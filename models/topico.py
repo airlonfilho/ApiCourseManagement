@@ -7,10 +7,8 @@ class TopicoModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(80))
     id_disciplinas = db.Column(db.Integer, db.ForeignKey('disciplinas.id'))
-
+    
     disciplina = db.relationship('DisciplinaModel')
-
-    relacionamentos = db.relationship('RelacionamentoModel', lazy="dynamic")
 
     def __init__(self, nome, id_disciplinas):
         self.nome = nome

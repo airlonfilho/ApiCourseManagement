@@ -5,7 +5,6 @@ from secure.security import authenticate, identity
 from controllers.user import UserRegister, Usuario, ListarUsuario, DeleteUsuario, EditUsuario
 from controllers.disciplina import DisciplinaId, DeleteDisciplina, Disciplina, ListaDisciplinas, EditDisciplina
 from controllers.topico import Topico, TopicoList, DeleteTopico, TopicoId, EditTopico
-from controllers.relacionamento import Relacionamento, RelacionamentoList 
 from db.db import db
 
 app = Flask(__name__)
@@ -45,6 +44,3 @@ api.add_resource(TopicoId, '/topico/<string:id>')
 api.add_resource(EditTopico, '/topico/edit/<string:id>')
 api.add_resource(DeleteTopico, '/topico/<string:id>')
 
-#Rotas de Rela
-api.add_resource(Relacionamento, '/rel')
-api.add_resource(RelacionamentoList, '/rels')
