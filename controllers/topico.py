@@ -29,7 +29,7 @@ class Topico(Resource):
 
 class TopicoList(Resource):
     def get(self):
-        return {'itens': [topico.json() for topico in TopicoModel.query.all()]}
+        return {'topicos': [topico.json() for topico in TopicoModel.query.all()]}
 
 class TopicoId(Resource):
     def get(self, id):

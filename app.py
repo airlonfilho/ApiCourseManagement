@@ -1,18 +1,25 @@
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
+from flask_cors import CORS, cross_origin
 from secure.security import authenticate, identity
 from controllers.user import UserRegister, Usuario, ListarUsuario, DeleteUsuario, EditUsuario
 from controllers.disciplina import DisciplinaId, DeleteDisciplina, Disciplina, ListaDisciplinas, EditDisciplina
 from controllers.topico import Topico, TopicoList, DeleteTopico, TopicoId, EditTopico
+from controllers.relacionamento import Relacionamento, RelacionamentoCad, DeleteRel, EditRel
 from db.db import db
 
+
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../dado.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'segredo'
 api = Api(app)
 db.init_app(app)
+
+
 
 @app.before_first_request
 def criar_banco():
@@ -44,3 +51,8 @@ api.add_resource(TopicoId, '/topico/<string:id>')
 api.add_resource(EditTopico, '/topico/edit/<string:id>')
 api.add_resource(DeleteTopico, '/topico/<string:id>')
 
+#Rotas de Relacionamento
+api.add_resource(Relacionamento, '/relacionamentos')
+api.add_resource(RelacionamentoCad, '/rel')
+api.add_resource(DeleteRel, '/rel/<string:id>')
+api.add_resource(EditRel, '/rel/edit/<string:id>')

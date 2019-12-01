@@ -2,19 +2,21 @@ from db.db import db
 
 class UserModel(db.Model):
 
-    __tablename__ = 'usuarios'
+    __tablename__ = 'usuers'
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
     password = db.Column(db.String(15))
+    nivel = db.Column(db.Integer, default="1")
     
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, nivel):
         self.username = username
         self.password = password
+        self.nivel = nivel
 
     def json(self):
-        return {'id' : self.id, 'nome' : self.username, 'senha': self.password}
+        return {'id' : self.id, 'nome' : self.username, 'nivel': self.nivel}
 
     @classmethod
     def buscar_por_nome(cls, username):
@@ -35,4 +37,3 @@ class UserModel(db.Model):
     def update(self):
         db.session.commit()
 
-    

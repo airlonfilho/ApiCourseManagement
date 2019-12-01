@@ -1,5 +1,6 @@
 from db.db import db
 
+
 class TopicoModel(db.Model):
     
     __tablename__ = 'topicos'
@@ -7,7 +8,7 @@ class TopicoModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(80))
     id_disciplinas = db.Column(db.Integer, db.ForeignKey('disciplinas.id'))
-    
+
     disciplina = db.relationship('DisciplinaModel')
 
     def __init__(self, nome, id_disciplinas):

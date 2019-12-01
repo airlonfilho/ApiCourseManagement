@@ -11,7 +11,6 @@ class Disciplina(Resource):
                         required=True,
                         help="Nome da Disciplina é obrigatória."
                         )
-    @jwt_required()
     def post(self):
         dado = Disciplina.parser.parse_args()
         if DisciplinaModel.buscar_por_nome(dado['nome']):
@@ -23,6 +22,7 @@ class Disciplina(Resource):
 
     
 class DeleteDisciplina(Resource):
+
     def delete(self, id):
         disciplina = DisciplinaModel.buscar_por_id(id)
         if disciplina:
@@ -37,7 +37,6 @@ class DisciplinaId(Resource):
         return {'mensagem': 'Disciplina não encontrada'}, 404
 
 class EditDisciplina(Resource):
-    @jwt_required()
     def put(self, id):
         dado = Disciplina.parser.parse_args()
         disciplina = DisciplinaModel.buscar_por_id(id)

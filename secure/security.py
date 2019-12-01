@@ -9,4 +9,3 @@ def authenticate(username, password):
 def identity(payload):
     user_id = payload['identity']
     return UserModel.buscar_por_id(user_id)
-
