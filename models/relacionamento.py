@@ -35,7 +35,7 @@ class RelacionamentoModel(db.Model):
         self.topico2_id = topico2_id
     
     def json(self):
-        return {'id': self.id, 'Descrição' : self.nome, 'id_topico1' : self.topico1_id, 'id_topico2' : self.topico2_id }
+        return {'id': self.id, 'nome' : self.nome, 'id_topico1' : self.topico1_id, 'id_topico2' : self.topico2_id }
 
     @classmethod
     def buscar_por_nome(cls, nome):

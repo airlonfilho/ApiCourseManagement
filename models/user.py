@@ -16,7 +16,7 @@ class UserModel(db.Model):
         self.nivel = nivel
 
     def json(self):
-        return {'id' : self.id, 'nome' : self.username, 'nivel': self.nivel}
+        return {'id' : self.id, 'username' : self.username, 'nivel': self.nivel}
 
     @classmethod
     def buscar_por_nome(cls, username):

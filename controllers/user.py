@@ -1,5 +1,4 @@
 from flask_restful import Resource, reqparse
-from flask_jwt import jwt_required
 from models.user import UserModel
 
 class Usuario(Resource): 
@@ -40,14 +39,12 @@ class UserRegister(Resource):
         return {"mensagem": "Usuário criado com sucesso"}
 
 class DeleteUsuario(Resource):
-    @jwt_required()
     def delete(self, id):
         usuario = UserModel.buscar_por_id(id)
         usuario.remover_no_banco()
         return {'mensagem': 'Usuário removido com sucesso'},200
 
 class EditUsuario(Resource):
-    @jwt_required()
     def put(self, id):
         dado = UserRegister.parser.parse_args()
         usuario = UserModel.buscar_por_id(id)
